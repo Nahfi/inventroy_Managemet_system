@@ -1,0 +1,28 @@
+/* ====================================================
+common css start
+=====================================================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+img {
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+.clr {
+  clear: both;
+}
+ul,
+ol {
+  list-style: none;
+}
+
+/* ====================================================
+common css end
+=====================================================*/
