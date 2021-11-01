@@ -1,2 +1,4 @@
 # inventroy_pro
- this is my inventory management project
+
+this is my inventory management project
+hei i am nafiz
