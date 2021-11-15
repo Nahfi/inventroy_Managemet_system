@@ -1,0 +1,117 @@
+/* ====================================================
+common css start
+=====================================================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+img {
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+a:hover {
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+ul,
+li,
+span {
+  margin: 0;
+  padding: 0;
+}
+
+/* ====================================================
+  common css end
+  =====================================================*/
+
+/* ====================================================
+  register page  css start
+  =====================================================*/
+body {
+  background-color: hsla(160, 51%, 65%, 0.342);
+}
+.frm {
+  padding: 100px 30px;
+  background-color: #1d0f0f;
+}
+a {
+  color: dodgerblue;
+}
+
+p {
+  color: white;
+}
+
+span {
+  color: #ff1919;
+}
+
+h1 {
+  color: beige;
+  text-align: center;
+}
+label {
+  color: beige;
+}
+
+hr {
+  color: aliceblue;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  color: black;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  background-color: #ddd;
+  outline: none;
+  color: black;
+}
+label {
+  text-align: start !important;
+}
+.sub {
+}
+.sub input {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  background: #023455;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: #f1f1f1 !important;
+  color: #f1f1f1;
+}
+
+/* ====================================================
+  register page  css end
+  =====================================================*/

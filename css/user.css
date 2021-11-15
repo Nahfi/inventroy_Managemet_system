@@ -1,0 +1,59 @@
+.modal-body {
+  margin: 0;
+  padding: 15px;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #282828;
+  color: #d0d0d0;
+  z-index: 999;
+}
+
+.modal-header {
+  background-color: #282828;
+  color: #ffce00;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.modal-footer {
+  background-color: #282828;
+  color: #ffce00;
+  border-radius: 0px 0px 5px 5px;
+}
+
+.user-input {
+  position: relative;
+}
+.login-input {
+  color: white;
+  border-radius: 2px;
+  width: 322px;
+  height: 44px;
+  border: none;
+  padding: 15px 20px;
+  background-color: rgba(65, 65, 65, 0.5);
+  margin-bottom: 24px;
+}
+.login-input:focus {
+  outline: none;
+  border-bottom: 2px solid #06ff8c;
+}
+
+.login-input:focus:invalid {
+  border-bottom: 2px solid #ffce00;
+}
+
+.form-input {
+  position: relative;
+}
+
+.form-input i {
+  position: absolute;
+  right: 4px;
+  top: 5px;
+  padding: 9px 8px;
+  color: #848484;
+  transition: 0.3s;
+}

@@ -1,0 +1,132 @@
+*
+  /*====================================================
+  common
+  css
+  start
+  =====================================================*/
+  * {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+img {
+  vertical-align: middle;
+}
+
+a {
+  text-decoration: none;
+  display: inline-block;
+}
+a:hover {
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+ul,
+ol {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+p,
+ul,
+li,
+span {
+  margin: 0;
+  padding: 0;
+}
+
+/* ====================================================
+  common css end
+  =====================================================*/
+
+/* ====================================================
+  login  css start
+  =====================================================*/
+.fm {
+  text-align: center;
+  color: azure;
+  padding: 50px 10px;
+  background-image: url("https://images.pexels.com/photos/2387793/pexels-photo-2387793.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.pi {
+  margin-top: 100px !important;
+}
+span {
+  margin-right: 2px !important;
+  text-transform: uppercase !important;
+  color: bisque !important;
+}
+h2 {
+  text-transform: uppercase;
+  color: #94b324;
+  margin-left: 2px;
+  margin-bottom: 10px;
+}
+.lo {
+  border-bottom: 3px solid #dad6d6;
+}
+.login {
+  margin-top: 50px;
+}
+input {
+  /* text-transform: uppercase;   */
+  color: #eaeeeee5;
+  border-radius: 2px;
+  width: 240px;
+  height: 44px;
+  border: none;
+  padding: 15px 20px;
+  background-color: #08b1cf80;
+  margin-bottom: 24px;
+}
+.in {
+  position: relative;
+  margin-top: 60px;
+}
+.in i {
+  position: absolute;
+  right: 33%;
+  top: 12px;
+}
+/* .pd input {
+  height: 30px;
+  width: 90%;
+  padding-left: 15px;
+  color: aqua;
+} */
+.pas {
+  position: relative;
+}
+.pas i {
+  position: absolute;
+  right: 33%;
+  top: 13px;
+  cursor: pointer;
+  /* z-index: 999; */
+  color: #350404;
+}
+#x {
+  display: none;
+}
+.bt button {
+  width: 240px;
+  height: 44px;
+  background: #350404;
+  color: azure;
+  text-transform: uppercase;
+  border: none;
+}
+
+/* ====================================================
+  login  css end
+  =====================================================*/ ;

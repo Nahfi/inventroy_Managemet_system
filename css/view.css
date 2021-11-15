@@ -1,0 +1,32 @@
+/* ====================================================
+common css start
+=====================================================*/
+
+/* ====================================================
+      common css end
+      =====================================================*/
+
+/* ====================================================
+      view page  css start
+      =====================================================*/
+.bgc {
+  background: #3a4647c4 !important;
+  --bs-gutter-x: 0 !important;
+}
+.asa {
+  margin-left: 91px;
+}
+.pasa {
+  margin-left: 15px;
+}
+.miu {
+  margin-right: 5px;
+}
+.pq span {
+  margin-left: 10px;
+}
+.dic h4 {
+  text-align: right !important;
+  margin-bottom: 5px;
+  display: inline-block !important;
+}
