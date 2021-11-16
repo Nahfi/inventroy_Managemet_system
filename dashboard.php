@@ -59,42 +59,12 @@ class single_tone_apply{
    return mysqli_fetch_assoc($connection->query($sql))['c'];
     }
 }
-
-function userinfo($connection,$userid){
-
-  
-    $userinfo=single_tone_apply::instance()->fetch_user_info( $userid,$connection);
-    return  $userinfo;
-
-}
- function product_info($connection){
-   
-    $productinfo=single_tone_apply::instance()->fetch_product_info($connection);
-    return  $productinfo;
- }
  
- function product_count($connection){
-    
-    $total_product=single_tone_apply::instance()->fetch_total_product($connection);
-    return  $total_product;
- }
- function product_baught($connection){
-  
-    $total_product_baught=single_tone_apply::instance()->fetch_total_product_baught($connection);
-    return  $total_product_baught;
- }
- 
- function product_sold($connection){
-
-    $total_product_sold=single_tone_apply::instance()->fetch_total_product_sold($connection);
-    return  $total_product_sold;
- }
- 
-$userinfo=userinfo($connection,$userid);
-$productinfo=product_info($connection);
-$total_product=product_count($connection);
-$total_product_bought=product_baught($connection);
-$total_product_sold=product_sold($connection);
+$userinfo=single_tone_apply::instance()->fetch_user_info( $userid,$connection);
+$productinfo=single_tone_apply::instance()->fetch_product_info($connection);
+$total_product=single_tone_apply::instance()->fetch_total_product($connection);
+$total_product_bought=single_tone_apply::instance()->fetch_total_product_baught($connection);
+$total_product_sold=single_tone_apply::instance()->fetch_total_product_sold($connection);
 
 
 
