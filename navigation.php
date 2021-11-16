@@ -2,13 +2,12 @@
 
 
 if(!$_SESSION['id']){
-     header("location:logout.php");
+     header("location:log.php");
 
 }
 
 $user_name=$_SESSION['name'];
 $id=$_SESSION['id'];
-echo $id;
 
 include "auth/connect.php";
 $con=connect();

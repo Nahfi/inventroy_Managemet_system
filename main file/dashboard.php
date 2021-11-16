@@ -4,102 +4,29 @@ session_start();
 include 'navigation.php';
 
 
+$con=connect();
+$ji=$_SESSION['id'];
 
-$connection=connect();
-$userid=$_SESSION['id'];
+$sq="SELECT * FROM users WHERE id=$ji";
+$fe=mysqli_num_rows($con->query($sq));
 
+$f1=mysqli_fetch_assoc($con->query($sq));
+ $date=date('y-m-d',strtotime("-7 days"));
+ $sql="SELECT * FROM  products WHERE update_at>$date";
+ $sqx="SELECT sum(bought) as bt FROM products; ";
+ $sq="SELECT count(*) as c FROM products; ";
+ $sqw="SELECT sum(sold) as st FROM products; ";
+ $my=mysqli_fetch_assoc($con->query($sq))["c"];    
+ $m1=mysqli_fetch_assoc($con->query($sqw))["st"];    
+ $count=$con->query($sqx);
+ if($count==true  ){
+     $str=mysqli_fetch_assoc($count);
+     $x=$str['bt'];
 
-
-class single_tone_apply{
-
-
-    public function __construct()
-    {
-        
-    }
-    public static function instance(){
-        return new single_tone_apply();
-    }
-    public function fetch_user_info($userid,$connection)
-    {
-
-
-     $sql="SELECT * FROM users WHERE id=$userid";
-     return mysqli_fetch_assoc($connection->query($sql));
-
-     
-    }
-    public function fetch_product_info($connection)
-    {
-        $sql="SELECT * FROM  products ";
-        return ($connection->query($sql));
-    }
-
-
-
-    public function fetch_total_product($connection)
-    {
-   $sql="SELECT count(*) as c FROM products; ";
-   return mysqli_fetch_assoc($connection->query($sql))['c'];
-    }
-
-
-    public function fetch_total_product_baught($connection)
-    {
-
-        $sql="SELECT sum(bought) as c FROM products; ";
-       return mysqli_fetch_assoc($connection->query($sql))['c'];
-    }
-
-    
-    public function fetch_total_product_sold($connection)
-    {
-
- $sql="SELECT sum(sold) as c FROM products; ";
-   return mysqli_fetch_assoc($connection->query($sql))['c'];
-    }
-}
-
-function userinfo($connection,$userid){
-
-  
-    $userinfo=single_tone_apply::instance()->fetch_user_info( $userid,$connection);
-    return  $userinfo;
-
-}
- function product_info($connection){
-   
-    $productinfo=single_tone_apply::instance()->fetch_product_info($connection);
-    return  $productinfo;
  }
- 
- function product_count($connection){
-    
-    $total_product=single_tone_apply::instance()->fetch_total_product($connection);
-    return  $total_product;
- }
- function product_baught($connection){
-  
-    $total_product_baught=single_tone_apply::instance()->fetch_total_product_baught($connection);
-    return  $total_product_baught;
- }
- 
- function product_sold($connection){
 
-    $total_product_sold=single_tone_apply::instance()->fetch_total_product_sold($connection);
-    return  $total_product_sold;
- }
- 
-$userinfo=userinfo($connection,$userid);
-$productinfo=product_info($connection);
-$total_product=product_count($connection);
-$total_product_bought=product_baught($connection);
-$total_product_sold=product_sold($connection);
-
-
-
-
-
+ $prod=$con->query($sql);
+ $av=$x-$m1;
  
 ?>
 
@@ -131,25 +58,25 @@ $total_product_sold=product_sold($connection);
                     <div class="col-lg-3  col-sm-12 col-12">
                         <div class="card1">
                             <p>total product</p>
-                            <h4 class="counter"><?php echo $total_product ; ?></h4>
+                            <h4 class="counter"><?php echo $my ; ?></h4>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-12 col-12">
                         <div class="card1 t2">
                             <p>products Baught</p>
-                            <h4 class="counter"><?php echo $total_product_bought ; ?></h4>
+                            <h4 class="counter"><?php echo $x ; ?></h4>
                         </div>
                     </div>
                     <div class="col-lg-3   col-sm-12 col-12">
                         <div class="card1 t1">
                             <p>product sold</p>
-                            <h4 class="counter"><?php echo $total_product_sold ; ?></h4>
+                            <h4 class="counter"><?php echo $m1 ; ?></h4>
                         </div>
                     </div>
                     <div class="col-lg-3   col-sm-12 col-12">
                         <div class="card1  t3">
                             <p> availavble stock</p>
-                            <h4 class="counter"><?php echo $total_product_bought- $total_product_sold ; ?></h4>
+                            <h4 class="counter"><?php echo $av ; ?></h4>
                         </div>
                     </div>
                 </div>
@@ -178,11 +105,11 @@ $total_product_sold=product_sold($connection);
                             </thead>
                             <tbody>
                                 <?php
-                                  if($productinfo==true)
+                                  if($prod==true)
                                   {
-                                     if(mysqli_num_rows($productinfo)>0){
+                                     if(mysqli_num_rows($prod)>0){
 
-                                        while($row=mysqli_fetch_assoc($productinfo))
+                                        while($row=mysqli_fetch_assoc($prod))
                                         {
                                             $stk=$row["bought"]-$row["sold"];
                                             echo "<tr>";
@@ -213,17 +140,16 @@ $total_product_sold=product_sold($connection);
                         <div class="ab2">
                             <h3 class="text-center">About User</h3>
                             <div class="im">
-                                <img src="<?php echo $userinfo['u_img'] ?>       " alt="uavtr"
+                                <img src="<?php echo $f1['u_img'] ?>       " alt="uavtr"
                                     style="width:100px; height:100px; border-radius:50%;">
 
                             </div>
                             <div class="na">
-                                <h4 class="text-center" style="color:#fff;font-size:18px">
-                                    <?php echo $userinfo['name'] ?></h4>
+                                <h4 class="text-center" style="color:#fff;font-size:18px"><?php echo $f1['name'] ?></h4>
                             </div>
                             <div class="na">
                                 <h4 class="mt-2 text-center" style="color:#fff;font-size:16px">is working there
-                                    since<?php echo $userinfo['create_at'] ?></h4>
+                                    since<?php echo $f1['create_at'] ?></h4>
                             </div>
                             <p class="mt-4"></p>
                         </div>

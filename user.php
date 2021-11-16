@@ -2,45 +2,41 @@
 
 session_start();
 $ji=$_SESSION["id"];
-// echo $ji;
+
 include 'navigation.php';
 
 $con=connect();
 
 $m="";
+$f=" ";
+$c="tudus";
 $sq="SELECT * FROM users WHERE id=$ji";
-$fe=mysqli_num_rows($con->query($sq))>1?"yes":"no";
-if($fe="yes"){
+$fe=mysqli_num_rows($con->query($sq));
+
     $f1=mysqli_fetch_assoc($con->query($sq));
-}
-// $name-$_SESSION['name'];
 
-if(isset($_POST['submit']))
-{
- if($f1["password"]==$_POST['pass'])
+
+ if(isset($_POST['submit']))
 {
 
+ if(password_verify($_POST['pass'],$f1['password']))
+{
+    $c=$_POST["cpass"];
+    $d=$_POST["npass"];
+    $f=$_FILES['uavtr'];
  $sqlq="UPDATE users SET ";
-    if(isset($_POST["uname"]))
+    if($_POST["uname"]!="")
     {
 
-        // $m=$_POST["uname"];
+
       if($_POST["uname"]!=$f1["name"])
       {
         $nam=$_POST["uname"];
         $sqlq.="name='$nam',";
       }
     }
-    if(isset($_POST["email"]))
-    {
-
-      if($_POST["email"]!=$f1["mail"])
-      {
-        $mail=$_POST["email"];
-        $sqlq.="mail='$mail',";
-      }
-    }
-    if(isset($_FILES['uavtr'])){
+    
+    if($f!=" "){
 
 
         $imna=$_FILES["uavtr"]["name"];
@@ -49,107 +45,67 @@ if(isset($_POST['submit']))
         if($size<8000000){
             $all=['png','jpg','jepg','png'];
             $form=explode(".",$imna);
-            $actualname=strtolower(  $form[0]);
-            $actualformate=strtolower(  $form[1]);
+            $actualname=strtolower( $form[0]);
+        if(count($form)!=1)
+        {
+
+        
+            $actualformate=strtolower($form[1]);
+        }
+        else{
+            $actualformate="";
+        }
+       
             $loc="users/".$actualname.".".$actualformate;
             if(in_array($actualformate,$all)){
                 $sqlq.="u_img='$loc',";
                 move_uploaded_file($orlocat,$loc);
             }
-        //  if($actualformate=="jpg" || $actualformate=="jpeg"){
-        //      $immi=imagecreatefromjpeg($orlocat);
-        //      $resize=imagescale($immi,200,300);
-        //      imagejpeg( $resize,$loc,-1);
-             
-             
-        //  }
-        //  else if($actualformate=="png"){
-        //     $immi=imagecreatefrompng( $orlocat);
-        //     $resize=imagescale($immi,200,300);
-        //     imagepng($resize,$loc,-1);
-        //  }
-        //  else if($actualformate=="gif"){
-        //     $immi=imagecreatefromgif( $orlocat);
-        //     $resize=imagescale($immi,200,300);
-        //     imagegif( $resize,$loc,-1);
-        //  }
-   
-        //  move_uploaded_file()
+            else{
+                $m="format is not supported";
+            }
+       
         }
         else{ 
             $m="image size shoud be lest than  8 mb";
         }
     }
+      if($c==$d && $c!="" && $d!=""){
+        if(!password_verify($c,$f1['password'])){
+         
+         $c=password_hash($c,PASSWORD_DEFAULT);
 
-    if(isset($_POST['npass']) && $_POST["npass"]!=" " && isset($_POST['cpass']) && $_POST["cpass"]!=" ")
-    {
-          if($_POST["npass"]==$_POST["cpass"])
-          {
-               $pa=$_POST["npass"];
-               if($pa!=$f1["password"]){
-                $sqlq.="password='$pa',";
-               }
-          }
+         
+         $sqlq.="password='$c',";
+
+        }
+ 
     }
+      if($_POST["email"]!='')
+    {
+
+     if($_POST["email"]!=$f1["mail"])
+      {
+        $mail=$_POST["email"];
+        $sqlq.="mail='$mail',";
+      }
+    }
+    
+
+    else{
+        // do nothing
+    }
+
+
     $sqlq=substr($sqlq,0,-1);
     $sqlq.="WHERE id='$ji'  ";
-    if($con->query($sqlq)==true){
-        $m="updated";
-    }
-else{
-    $m="not updated";
-}
-}
-else{
-    $m="not_matched";
-}
-    
-}
-
-
-//     $name=$_POST["name"];
-//     $email=$_POST["email"];
-//     $pass=$_POST["pass"];
-//     $npass=$_POST["npass"];
-//     $cpass=$_POST["npass"];
-//     $avtr=$_FILES["uavtr"];
-//    $avtrn=$avtr["name"];
-//    $locat=$avtr["tmp_name"];
-//    $aa=explode(".",$avtrn);
-//    $orgname=strtolower($aa[0]);
-//    $type=strtolower($aa[1]);
-//    $avf=['jpg','jepg','png'];
-
-//    $up="uploads/".$orgname.".".$type;
-//    if($f1[""])
-
-   
-   
+  $con->query($sqlq)==true?$m="updated":$m="not updated";
   
 
 
-
     
-    
-
-   //  print_r($_FILES);
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}
+}
 
 
 
@@ -300,6 +256,7 @@ $date=date('y-m-d',strtotime("-7 days"));
                                                         <input name="npass" class="login-input" type="text" id="npass">
                                                     </div>
                                                 </div>
+
                                                 <div class="form-group pt-20">
                                                     <div class="col-sm-4">
                                                         <label for="cpass" class="pr-10">Confirm New Password</label>
@@ -330,6 +287,7 @@ $date=date('y-m-d',strtotime("-7 days"));
                         <div class="tex text-center " style="background: #000 ; color:#fff; padding:10px;">
                             <h2 class="mb-4"> <?php
  echo $m;
+//  echo $c;
  ?></h2>
 
                             <h3>products</h3>
@@ -416,7 +374,7 @@ $date=date('y-m-d',strtotime("-7 days"));
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ab1">
-                            <h3>owner info</h3>
+                            <h3>owner text</h3>
 
                             <p>some text</p>
                         </div>

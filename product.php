@@ -8,9 +8,9 @@ $con=connect();
 
 $id=$_SESSION["id"];
 if(!$id){
-    header("location:login.php");
+    header("location:log.php");
 }
-// echo $id;
+
 $qq="SELECT * FROM users WHERE id='$id'";
 $my=$con->query($qq);
 $my1=mysqli_fetch_assoc($my);
@@ -46,7 +46,7 @@ if(isset($_POST['submit']))
     
     
 
-   //  print_r($_FILES);
+
 
 
     
@@ -225,6 +225,7 @@ $date=date('y-m-d',strtotime("-7 days"));
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php
                                   if($prod==true)
                                   {
@@ -267,14 +268,21 @@ $date=date('y-m-d',strtotime("-7 days"));
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ab2">
-                            <h3>About us</h3>
+                            <h3 class="text-center">About User</h3>
                             <div class="im">
-                                <img src="" alt="">
-                                <p>
-                                    img
-                                </p>
+                                <img src="<?php echo $my1['u_img'] ?>       " alt="uavtr"
+                                    style="width:100px; height:100px; border-radius:50%;">
+
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam, saepe?</p>
+                            <div class="na">
+                                <h4 class="text-center" style="color:#fff;font-size:18px"><?php echo $my1['name'] ?>
+                                </h4>
+                            </div>
+                            <div class="na">
+                                <h4 class="mt-2 text-center" style="color:#fff;font-size:16px">is working there
+                                    since<?php echo $my1['create_at'] ?></h4>
+                            </div>
+                            <p class="mt-4"></p>
                         </div>
                     </div>
                 </div>
@@ -283,7 +291,7 @@ $date=date('y-m-d',strtotime("-7 days"));
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="ab1">
-                            <h3>owner info</h3>
+                            <h3>owner text</h3>
 
                             <p>some text</p>
                         </div>
