@@ -60,7 +60,9 @@ if($m!=' ')
             <div class="row  justify-content-center mt-lg-4">
                 <div class="col-lg-7 ">
                     <div class="frm">
-                        <form action="register.php" method="post">
+
+
+                        <form action="register.php" method="post" id="ff">
                             <h1 class="mb-lg-4">Registration form</h1>
                             <div class="mb-lg-4">
                                 <label>Your Name<span>*</span></label>
@@ -70,7 +72,7 @@ if($m!=' ')
 
                             <div class="mb-lg-4">
                                 <label>Your username<span>*</span></label>
-                                <input name="uname" id="uname" type="text" placeholder="Enter Your username" required>
+                                <input name="uname" id="uname" type="text" placeholder="Enter Your username">
                             </div>
                             <div class="mb-lg-4">
                                 <label>Your mail<span>*</span></label>

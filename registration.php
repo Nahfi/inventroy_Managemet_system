@@ -4,30 +4,36 @@ include 'auth/connect.php';
 
 
 
-function apply_proxy_pattern(){
+function apply_proxy_pattern()
+{
     $connection=connect();
-    if(isset($_POST['submit'])){
+    if(isset($_POST['submit']))
+    {
 
-        interface create_users{
-
-        public function user_registration($name,$username,$mail,$password,$match_password,$connection);
-       }
+        interface create_users
+        {
+            public function user_registration($name,$username,$mail,$password,$match_password,$connection);
+        }
    
                   
             class create_new_users implements create_users{
 
                 public function match_password($password,$match_password){
-                            if($password==$match_password){
+                            if($password==$match_password)
+                            {
                                 return true;
                             }
-                            else{
+                            else
+                            {
                                 return false;
                             }
                 }
-                public function password_hashing($password){
+                public function password_hashing($password)
+                {
                     return password_hash($password,PASSWORD_DEFAULT);
                 }
-                public function database_insertion($password,$name,$username,$mail,$connection){
+                public function database_insertion($password,$name,$username,$mail,$connection)
+                {
                          
                         $sql="INSERT INTO users(name,username,mail,password)VALUES('$name','$username','$mail','$password')";
                         if($connection->query($sql)==true){
@@ -37,27 +43,28 @@ function apply_proxy_pattern(){
                        echo "no connection";
                         }
                 }
-            public function user_registration($name,$username,$mail,$password,$match_password,$connection){
+            public function user_registration($name,$username,$mail,$password,$match_password,$connection)
+            {
               
 
-
-
-
-                    if($this->match_password($password,$match_password)){
+                 if($this->match_password($password,$match_password))
+                    {
 
                         $password=$this->password_hashing($password);
                         $this->database_insertion($password,$name,$username,$mail,$connection);
                 
         
                     }
-                    else{
+                    else
+                    {
                     
                         echo"password doesnot match";
                     }
             }
        }
 
-       class proxy_pattern {
+       class proxy_pattern 
+       {
 
         public $proxy_object;
      
@@ -69,7 +76,8 @@ function apply_proxy_pattern(){
 
 
        }
-       public function access_create_user($name,$username, $user_mail,$password,$match_password,$connection){
+       public function access_create_user($name,$username, $user_mail,$password,$match_password,$connection)
+       {
 
 
         
@@ -123,7 +131,7 @@ apply_proxy_pattern();
             <div class="row  justify-content-center mt-lg-4">
                 <div class="col-lg-7 ">
                     <div class="frm">
-                        <form action="registration.php" method="post">
+                        <form action="registration.php" method="post" id="ff">
                             <h1 class="mb-lg-4">Registration form</h1>
                             <div class="mb-lg-4">
                                 <label>Your Name<span>*</span></label>
@@ -133,7 +141,7 @@ apply_proxy_pattern();
 
                             <div class="mb-lg-4">
                                 <label>Your username<span>*</span></label>
-                                <input name="uname" id="uname" type="text" placeholder="Enter Your username" required>
+                                <input name="uname" id="uname" type="text" placeholder="Enter Your username">
                             </div>
                             <div class="mb-lg-4">
                                 <label>Your mail<span>*</span></label>
@@ -153,7 +161,7 @@ apply_proxy_pattern();
                                 <p> <span>***</span> by creating an account you agree to our terms and condition</p>
                             </div>
                             <div class="sub">
-                                <input type="submit" class="btn  btn-sucess" name="submit" value="submit">
+                                <input type="submit" class="btn  btn-sucess" name="submit" value="submit" id="sub">
 
                             </div>
                             <div class="trems text-center">

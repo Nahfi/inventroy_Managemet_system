@@ -1,11 +1,5 @@
 <?php
 
-
-
-
-
-
-
 class single_tone{
 
 
@@ -16,15 +10,13 @@ class single_tone{
     public static function instance(){
         return new single_tone();
     }
+
+
     public function my_sql_connect($dbhost,$user,$password,$dbname){
      $connect=new mysqli($dbhost,$user,$password,$dbname);
      return $connect;
     }
 }
-
-
-
-
 
 
 function connect(){

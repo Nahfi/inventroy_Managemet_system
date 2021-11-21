@@ -96,7 +96,7 @@ $fe=mysqli_num_rows($con->query($sq));
         // do nothing
     }
 
-
+$_2Double =10;
     $sqlq=substr($sqlq,0,-1);
     $sqlq.="WHERE id='$ji'  ";
   $con->query($sqlq)==true?$m="updated":$m="not updated";

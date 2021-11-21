@@ -76,7 +76,12 @@ label {
 hr {
   color: aliceblue;
 }
-
+.samle {
+  margin-top: 15px;
+  color: white !important;
+  text-align: center !important;
+  font-size: 30px;
+}
 input[type="text"],
 input[type="password"],
 input[type="email"] {

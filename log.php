@@ -49,7 +49,7 @@ public function verify_users($row,$connection,$password){
            
            if($connection->query($sql_1)==true)
            {
-               echo "true";
+        
             session_start();
             $_SESSION["name"]=" ";
             $_SESSION["id"]=" ";
@@ -75,7 +75,8 @@ public function verify_users($row,$connection,$password){
 
 
     $object=singletone::getinstance();
-    $object->login($_POST["name"],$_POST["pass"],$connection);
+    $name=mysqli_real_escape_string($connection,$_POST["name"])   ;
+    $object->login(,$_POST["pass"],$connection);
 
    }
    
@@ -147,7 +148,7 @@ applications_of_single_tone();
                                 <button type="submit" name="submit" class="btn btn-success" id="btt">login</button>
                             </div>
                             <div class="alex mt-lg-3">
-                                <p> not a user <a href="register.php">Sign UP now</a></p>
+                                <p> not a user <a href="registration.php">Sign UP now</a></p>
                             </div>
                             <div class="fg mt-lg-3">
                                 <a href="#">forgot password</a>

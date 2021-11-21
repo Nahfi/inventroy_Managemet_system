@@ -23,11 +23,9 @@ class single_tone_apply{
     public function fetch_user_info($userid,$connection)
     {
 
-
      $sql="SELECT * FROM users WHERE id=$userid";
      return mysqli_fetch_assoc($connection->query($sql));
 
-     
     }
     public function fetch_product_info($connection)
     {
@@ -35,14 +33,11 @@ class single_tone_apply{
         return ($connection->query($sql));
     }
 
-
-
     public function fetch_total_product($connection)
     {
    $sql="SELECT count(*) as c FROM products; ";
    return mysqli_fetch_assoc($connection->query($sql))['c'];
     }
-
 
     public function fetch_total_product_baught($connection)
     {
